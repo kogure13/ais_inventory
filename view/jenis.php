@@ -1,0 +1,69 @@
+<fieldset>
+    <legend>Master Jenis Asset</legend>
+    <div class="content">
+        <table id="tbl_jenis" style="display: none;"></table>
+    </div>
+
+    <div id="add_model" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">                    
+                    <h4 class="modal-title"></h4>
+                </div>
+                <form id="frm_jenis" enctype="multipart/form-data" accept="image/*">
+                    <div class="modal-body">
+                        <input type="hidden" value="add" name="action" id="action">
+                        <input type="hidden" value="0" name="edit_id" id="edit_id">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">                            
+                                    <label for="kategori" class="control-label">Category:</label>
+                                    <select name="kategori" id="kategori" class="form-control input-sm">
+                                        <option value="">...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>                        
+                        <table class="table-condensed table-responsive form-group">
+                            <tr>
+                                <td>
+                                    <label for="kode_jenis" class="control-label">Type:</label>
+                                    <input type="text" class="form-control input-sm" id="kode_jenis" name="kode_jenis"/>
+                                </td>
+                                <td>
+                                    <label for="nama_jenis" class="control-label">Items:</label>
+                                    <input type="text" class="form-control input-sm" id="nama_jenis" name="nama_jenis"/>
+                                </td>
+                                <td>
+                                    <label for="qty" class="control-label">Qty:</label>
+                                    <input type="text" class="form-control input-sm" id="qty" name="qty" size="5"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="date_purchase" class="control-label">Date Purchased:</label>
+                                    <input type="text" class="form-control input-sm" id="date_purchase" name="date_purchase"/>
+                                </td>
+                            </tr>
+                        </table>                        
+
+                        <div class="form-group">
+                            <label for="sample_foto" class="control-label">Sample Foto:</label>
+                            <div class="hiddenFileInputContainter">
+                                <!-- The file input field used as target for the file upload widget -->
+                                <input id="fileupload" class="hidden_pic" type="file" name="files" accept="image/*; capture=camera" onchange="loadImage(this)">
+                                <img id="imgupload" class="imgupload" src="theme/asset/images/empty_pic.png" alt="">                        
+                            </div>                            
+                        </div>                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btn_add" class="btn btn-sm btn-primary">Save</button>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<script src="application/jenis/script.js"></script>
