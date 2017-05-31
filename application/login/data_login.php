@@ -1,37 +1,41 @@
 <?php
 
+session_start();
+
 include_once '../../inc/config.php';
 $db = new dbObj();
 $connString = $db->getConstring();
 $userClass = new User($connString);
 
-$params = $_REQUEST;
-$action = isset($params['action']) != '' ? $params['action'] : '';
+$uname = $_POST['uname'];
+$passwd = $_POST['passwd'];
 
-switch ($action){
-    case 'login': $userClass->getUser($params);
-        break;
-}
-
+$userClass->getUser($uname, $passwd);
 
 class User {
-    protected $conn;    
+
+    protected $conn;
 
     function __construct($connString) {
         $this->conn = $connString;
     }
-    
-    function getUser($params){
+
+    function getUser($uname, $passwd) {
         $sql = "SELECT * FROM pengguna";
-        $sql .= " WHERE username = '".$params['uname']."' and password = '".$params['passwd']."'";
+        $sql .= " WHERE username = '" . $uname . "' AND password = '" . $passwd . "'"
+                . " AND status = 1";
         $qtot = mysqli_query($this->conn, $sql) or die("Error to fecth total");
         
-        if(intval($qtot->num_rows) == 1){
+        $data = mysqli_fetch_assoc($qtot);
+        
+        if (intval($qtot->num_rows) == 1) {
+            echo 'true';
             $_SESSION['user_login'] = true;
             $_SESSION['id_user'] = $data['id'];
-            
-        }else{
+        } else {
+            echo 'false';
             echo 'Incorrect Username/password';
         }
     }
+
 }

@@ -1,5 +1,5 @@
 <?php 
-session_start('user_login');
+session_start();
 include_once 'inc/class.php';
 include_once 'inc/config.php';
 

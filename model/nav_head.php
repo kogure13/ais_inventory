@@ -89,7 +89,12 @@
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>                        
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li>
+                            <a href="?page=logout">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                logout
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

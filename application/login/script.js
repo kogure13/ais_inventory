@@ -33,14 +33,25 @@ $(function () {
 });
 
 function ajaxAction(action) {
-    data = $('#login-form').serializeArray();
-    
+    uname = $('#uname').val();
+    passwd = $('#passwd').val();
+
     $.ajax({
         type: 'POST',
         url: 'application/login/data_login.php',
-        data: data,
-        success: function(response) {
-            document.location.href = 'index.php';            
+        data: 'uname=' + uname + '&passwd=' + passwd,
+        success: function (html) {
+            if (html == 'true') {
+                window.location = "index.php";
+            } else {
+                $('#err-login').css('display', 'inline', 'important');
+                $('#err-login').html('Wrong Username/Password');
+            }
+        },
+        beforeSend: function () {
+            $('#err-login').css('display', 'inline', 'important');
+            $('#err-login').html("<img src='theme/asset/images/loading.gif' height='20px' /> Loading...");
         }
     });
+    return false;
 }

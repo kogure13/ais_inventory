@@ -28,3 +28,11 @@ class Main {
         include 'model/nav_head.php';
     }        
 }
+
+class User {
+    
+    function logout() {
+        session_destroy();
+        echo '<meta http-equiv="refresh" content="0;url=index.php" >';
+    }
+}

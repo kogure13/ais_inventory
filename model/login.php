@@ -201,6 +201,7 @@
                         <input id="uname" name="uname" type="text" placeholder="username">
                         <input id="passwd" name="passwd" type="password" placeholder="password">
                         <button class="btn btn-info btn-block login" type="submit" id="login-btn">Login</button>
+                        <div class="err" id="err-login"></div>
                     </form>
                 </div>
             </div>
