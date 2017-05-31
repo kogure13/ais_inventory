@@ -42,8 +42,7 @@ body {
 }
 
 .wrapper {
-    background: url('../images/cleanlayout7.jpg') center bottom repeat-x;
-    background-size: 500px;
+    background: url('../images/ao.gif') repeat;    
     background-color: #77bbdd;
     margin: 0;
     padding: 0;

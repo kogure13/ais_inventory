@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Form Asset Check In</strong>
@@ -11,22 +11,25 @@
                         <div class="form-group">
                             <label class="control-label" for="no_checkin">No. Check In Asset:</label>
                             <input type="text" id="no_checkin" class="form-control input-sm" name="no_checkin" readonly="readonly">
-                        </div>
-                        <table class="table-condensed table-responsive form-group">
-                            <tr>
-                                <td width="70%" style="padding-right: 5px">                                    
-                                    <label class="control-label" for="jenis_asset">Jenis Asset:</label>
-                                    <input type="hidden" id="id_jenis" name="id_jenis">
-                                    <input type="text" id="jenis_asset" name="jenis_asset" class="form-control input-sm">                                    
-                                </td>
-                                <td>                                    
-                                    <label class="control-label" for="qty">Qty:</label>
-                                    <input type="text" id="qty" name="qty" class="form-control input-sm">
-                                </td>
-                            </tr>                            
+                        </div>                        
+                        <table class="table-condensed table-responsive form-group" id="tbl_items">
+                            <tbody>
+                                <tr>
+                                    <td width="70%" style="padding-right: 5px">                                    
+                                        <label class="control-label" for="jenis_asset">Jenis Asset:</label>
+                                        <input type="hidden" id="id_jenis" name="id_jenis">
+                                        <input type="text" id="jenis_asset" name="jenis_asset" class="form-control input-sm">                                    
+                                    </td>
+                                    <td>                                    
+                                        <label class="control-label" for="qty">Qty:</label>
+                                        <input type="text" id="qty" name="qty" class="form-control input-sm">
+                                    </td>
+                                </tr>                            
+                            </tbody>                            
                         </table>                        
                         <div class="form-group">
                             <label class="control-label" for="location">location:</label>
+                            <input type="hidden" id="id_location" name="id_location">
                             <input type="text" id="location" name="location" class="form-control input-sm">
                         </div>
                         <div class="form-group">
@@ -62,7 +65,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-9 hidden-sm hidden-xs">
+        <div class="col-md-8 hidden-sm hidden-xs">
             <table id="queue_checkin" style="display: none"></table>
         </div>
     </div>    

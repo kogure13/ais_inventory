@@ -28,7 +28,3 @@ class Main {
         include 'model/nav_head.php';
     }        
 }
-
-class User {
-    
-}

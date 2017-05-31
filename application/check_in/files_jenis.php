@@ -21,13 +21,13 @@ class Jenis {
         $json_data = array();
 
         $sql = "SELECT * FROM master_jenis";
-        $sql .= " WHERE nama_jenis LIKE '%{$key}%'";
+        $sql .= " WHERE nama_jenis LIKE '%{$key}%' OR kode_jenis LIKE '%{$key}%'";
         $result = mysqli_query($this->conn, $sql) or die();
         while ($row = mysqli_fetch_array($result)) {
             $json_data[] = array(
                 'label' => $row['nama_jenis'].'-'.$row['kode_jenis'],
-                'value' => "",
-                'id_jenis' => $row['id']
+                'value' => '',
+                'id' => $row['id']
             );
         }
 

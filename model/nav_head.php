@@ -58,13 +58,14 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="?page=kategori">Kategori</a></li>                        
-                        <li><a href="?page=jenis">Jenis Asset</a></li>                                                
+                        <li><a href="?page=kategori">Category</a></li>                        
+                        <li><a href="?page=jenis">Jenis Asset</a></li>
+                        <li><a href="?page=location">Location</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="?page=users" id="users">Users/Agent</a></li>
                         <li><a href="?page=department" id="department">Department</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="?page=th_ajar">Tahun Ajaran</a></li>
+                        <li><a href="?page=th_ajar">Year Academic</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

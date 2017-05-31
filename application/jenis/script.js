@@ -31,11 +31,13 @@ $(document).ready(function () {
             }, {
                 display: 'Quantity',
                 name: 'qty',
-                width: 80
+                align: 'right',
+                width: 50
             }, {
                 display: 'Date Purchased',
                 name: 'date_purchase',                
-                width: 120
+                align: 'right',
+                width: 100
             }, {
                 display: 'Sample Foto',
                 name: 'sample_foto',                
@@ -59,7 +61,7 @@ $(document).ready(function () {
         ],
         searchitems: [            
             {display: 'Items', name: 'nama_jenis'},
-            {display: 'Type', name: 'kode_jenis'}
+            {display: 'Type', name: 'kode_jenis', isdefault: true}
         ],
         sortname: 'date_purchase',
         sortorder: 'asc',
@@ -73,7 +75,7 @@ $(document).ready(function () {
         height: 'auto'
     });        
 
-    var items = "";
+    var items = '';
     $.ajax({
         url: "application/jenis/option_jenis.php",
         dataType: 'JSON',
