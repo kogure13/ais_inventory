@@ -1,8 +1,8 @@
 <?php
 
-include_once '../../inc/config.php';
+include_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
+$connString = $db->getConn();
 
 $params = $_REQUEST;
 
@@ -22,9 +22,7 @@ switch ($action) {
 }
 
 class Dept {
-
-    protected $conn;
-    protected $data = [];
+  
 
     function __construct($connString) {
         $this->conn = $connString;
@@ -43,23 +41,28 @@ class Dept {
         $sortorder = isset($_POST['sortorder']) ? $_POST['sortorder'] : 'desc';
         $query = isset($_POST['query']) ? $_POST['query'] : false;
         $qtype = isset($_POST['qtype']) ? $_POST['qtype'] : false;
+        $qsearch = ($qtype != '' && $query != '') ? " WHERE $qtype LIKE '%{$query}%' " : '';
 
         $start = ($page - 1) * $rp;
         $sql = "SELECT * FROM " . $tname;
+        $sql .= $qsearch;
+        $sqlTot = $sql;
+        
         $sql .= " ORDER BY " . $sortname . " " . $sortorder;
         $sql .= " LIMIT " . $start . " , " . $rp . " ";
-        $sqlTot = "SELECT * FROM " . $tname;
-        $qtot = mysqli_query($this->conn, $sqlTot) or die("Error to fecth total \"Data\"");
-        $queryRecords = mysqli_query($this->conn, $sql) or die("Errot to fecth data");
+        
+        $qtot = mysql_query($sqlTot) or die("Error to fecth total Data");
+        $num_rows = mysql_num_rows($qtot);
+        $queryRecords = mysql_query($sql) or die("Errot to fecth data");
 
-        if (intval($qtot->num_rows) > 0) {
-            while ($row = mysqli_fetch_assoc($queryRecords)) {
+        if ($num_rows > 0) {
+            while ($row = mysql_fetch_assoc($queryRecords)) {
                 $data[] = $row;
             }
 
             $json_data = [
                 "page" => $page,
-                "total" => intval($qtot->num_rows),
+                "total" => $num_rows,
                 "rows" => $data
             ];
             return $json_data;
@@ -80,7 +83,7 @@ class Dept {
         $sql .= " VALUES('".addslashes($params['kode_department'])."', "
                 . "'".addslashes($params['nama_department']). "')";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to insert data");
+        echo $result = mysql_query($sql) or die("error to insert data");
     }
 
     function updateDept($params) {
@@ -90,7 +93,7 @@ class Dept {
                 . " nama_department ='".addslashes($params['nama_department'])."'";
         $sql .= " WHERE id = '".$_POST['edit_id']."'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to update data");
+        echo $result = mysql_query($sql) or die("error to update data");
     }
 
     function deleteDept($params) {
@@ -98,7 +101,7 @@ class Dept {
         $sql = "DELETE from master_department";
         $sql .= " WHERE id = '".$params['id']."'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to delete data");
+        echo $result = mysql_query($sql) or die("error to delete data");
     }
 
 }

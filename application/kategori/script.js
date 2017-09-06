@@ -1,8 +1,8 @@
 $(document).ready(function () {
-	$('#btn_cancel').click(function () {
+    $('#btn_cancel').click(function () {
         $('#frm_kategori').trigger('reset');
     });
-	
+
     $("#tbl_kategori").flexigrid({
         url: 'application/kategori/data_kategori.php',
         dataType: 'json',
@@ -13,11 +13,11 @@ $(document).ready(function () {
                 name: 'id',
                 width: 40
             }, {
-                display: 'Kode Kategori',
+                display: 'Code',
                 name: 'kode_kategori',
                 width: 140
             }, {
-                display: 'Nama Kategori',
+                display: 'Category',
                 name: 'nama_kategori',
                 width: 200
             }
@@ -36,13 +36,13 @@ $(document).ready(function () {
                 bclass: 'delete',
                 onpress: gridAction
             }
-        ],
+        ],        
         sortname: 'id',
         sortorder: 'asc',
         usepager: true,
         useRp: true,
         rp: 10,
-        title: 'Data Kategori',
+        title: 'Data Category',
         singleSelect: true,
         showTableToggleBtn: true,
         striped: true,
@@ -64,23 +64,23 @@ $(function () {
             }
         },
         messages: {
-            kode_kategori: {
-                required: 'Kode Kategori cannot empty',
+            kode_kategori: {    
+                required: 'Code cannot empty',
                 minlength: 'Min. 2 char'
             },
             nama_kategori: {
-                required: 'Nama Kategori cannot empty',
+                required: 'Category cannot empty',
                 minlength: 'Min. 2 char'
             }
         },
         submitHandler: function (form) {
             var com_action = $('#action').val();
-            if(com_action == 'add'){
+            if (com_action == 'add') {
                 ajaxAction('add');
-            }else if(com_action == 'edit'){                
+            } else if (com_action == 'edit') {
                 ajaxAction('edit');
             }
-                                       
+
             $('#frm_kategori').trigger('reset');
         }
     });
@@ -88,18 +88,27 @@ $(function () {
 
 function gridAction(com, grid) {
     if (com == 'Add') {
-        $('#add_model').modal('show');
+        $('#add_model').modal({backdrop: 'static', keyboard: false});
         $('#action').val('add');
-        $('.modal-title').html('Add Kategori');
+        $('.modal-title').html('Add Category');
     } else if (com == 'Edit') {
+        var id = 0;
         if ($('.trSelected', grid).length > 0) {
-            $('#add_model').modal('show');
+            $('#add_model').modal({backdrop: 'static', keyboard: false});
             $('#action').val('edit');
-            $('.modal-title').html('Edit Kategori');
+            $('.modal-title').html('Edit Category');
             $.each($('.trSelected', grid), function (key, value) {
                 $('#edit_id').val(value.children[0].innerText);
-                $('#kode_kategori').val(value.children[1].innerText);
-                $('#nama_kategori').val(value.children[2].innerText);
+                id = $('#edit_id').val();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: 'application/kategori/edit_kategori.php?id=' + id,
+                    success: function (data) {
+                        $('#kode_kategori').val(data.kode_kategori);
+                        $('#nama_kategori').val(data.nama_kategori);                        
+                    }
+                });
             });
         } else {
             swal("Warning", "No row selected! First select row, then click edit button", "warning");
@@ -126,7 +135,7 @@ function gridAction(com, grid) {
 
 function ajaxAction(action) {
     data = $('#frm_kategori').serializeArray();
-    
+
     $.ajax({
         type: 'POST',
         dataType: 'json',

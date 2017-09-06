@@ -1,13 +1,13 @@
 <?php
 
-include_once '../../inc/config.php';
+include_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
+$connString = $db->getConn();
 
 $params = $_REQUEST;
 
 $action = isset($params['action']) != '' ? $params['action'] : '';
-$catgClass = new Kategori($connString);
+$catgClass = new Kategori();
 
 switch ($action) {
     case 'add' : $catgClass->insertKategori($params);
@@ -22,13 +22,8 @@ switch ($action) {
 }
 
 class Kategori {
-
-    protected $conn;
+    
     protected $data = [];
-
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
 
     public function getKategori($params) {
         $this->data = $this->getRecords($params);
@@ -42,23 +37,28 @@ class Kategori {
         $sortorder = isset($_POST['sortorder']) ? $_POST['sortorder'] : 'desc';
         $query = isset($_POST['query']) ? $_POST['query'] : false;
         $qtype = isset($_POST['qtype']) ? $_POST['qtype'] : false;
+        $qsearch = ($qtype != '' && $query != '') ? " WHERE $qtype LIKE '%{$query}%' " : '';
 
         $start = ($page - 1) * $rp;
-        $sql = "SELECT * FROM master_kategori";
+        $sql = "SELECT * FROM master_kategori";                
+        $sql .= $qsearch;        
+        $sqlTot = $sql;
+        
         $sql .= " ORDER BY " . $sortname . " " . $sortorder;
-        $sql .= " LIMIT " . $start . " , " . $rp . " ";
-        $sqlTot = "SELECT * FROM master_kategori";
-        $qtot = mysqli_query($this->conn, $sqlTot) or die("Error to fecth total \"Kategori\"");
-        $queryRecords = mysqli_query($this->conn, $sql) or die("Errot to fecth kategori data");
+        $sql .= " LIMIT " . $start . " , " . $rp . " ";        
+        
+        $qTot = mysql_query($sqlTot) or die("Error to fecth total");
+        $num_rows = mysql_num_rows($qTot);
+        $queryRecords = mysql_query($sql) or die("Errot to fecth data");
 
-        while ($row = mysqli_fetch_assoc($queryRecords)) {
+        while ($row = mysql_fetch_assoc($queryRecords)) {
             $data[] = $row;
         }
 
-        if (intval($qtot->num_rows) > 0) {
+        if ($num_rows > 0) {
             $json_data = [
                 "page" => $page,
-                "total" => intval($qtot->num_rows),
+                "total" => $num_rows,
                 "rows" => $data
             ];
         } else {
@@ -78,7 +78,7 @@ class Kategori {
         $sql .= " (kode_kategori, nama_kategori)";
         $sql .= " VALUES('" . $params['kode_kategori'] . "', '" . $params['nama_kategori'] . "')";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to insert kategori data");
+        echo $result = mysql_query($sql) or die("error to insert kategori data");
     }
 
     function updateKategori($params) {
@@ -87,7 +87,7 @@ class Kategori {
         $sql .= " SET kode_kategori='" . $params['kode_kategori'] . "', nama_kategori = '" . $params['nama_kategori'] . "'";
         $sql .= " WHERE id = '" . $_POST['edit_id'] . "'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to update employee data");
+        echo $result = mysql_query($sql) or die("error to update employee data");
     }
 
     function deleteKategori($params) {
@@ -95,7 +95,7 @@ class Kategori {
         $sql = "DELETE from master_kategori";
         $sql .= " WHERE id = '" . $params['id'] . "'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to delete employee data");
+        echo $result = mysql_query($sql) or die("error to delete employee data");
     }
 
 }

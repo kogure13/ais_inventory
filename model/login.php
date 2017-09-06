@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Login Form</title>
+        <link rel="shortcut icon" href="favicon.png">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, front-end, frontend, web development" />
-        <meta name="keywords" content="Bandung" />
+        <meta name="keywords" content="Al-Irsyad, Asset, Inventory" />
         <!-- CSS -->
         <link rel="stylesheet" href="theme/asset/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="theme/asset/css/ais-custom.css" />
@@ -72,6 +73,7 @@
                 margin: 10px auto 30px;
                 border-radius: 100%;
                 border: 2px solid #aaa;
+                background: url('favicon.png');
                 background-size: cover;
             }
 

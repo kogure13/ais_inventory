@@ -1,5 +1,5 @@
 <fieldset>
-    <legend>Master Jenis Asset</legend>
+    <legend>Master Asset Items</legend>
     <div class="content">
         <table id="tbl_jenis" style="display: none;"></table>
     </div>
@@ -14,7 +14,7 @@
                     <div class="modal-body">
                         <input type="hidden" value="add" name="action" id="action">
                         <input type="hidden" value="0" name="edit_id" id="edit_id">
-                        <div class="row">
+                        <div class="">
                             <div class="col-sm-4">
                                 <div class="form-group">                            
                                     <label for="kategori" class="control-label">Category:</label>
@@ -46,14 +46,12 @@
                                 </td>
                             </tr>
                         </table>                        
-
                         <div class="form-group">
                             <label for="sample_foto" class="control-label">Sample Foto:</label>
-                            <div class="hiddenFileInputContainter">
-                                <!-- The file input field used as target for the file upload widget -->
-                                <input id="fileupload" class="hidden_pic" type="file" name="files" accept="image/*; capture=camera" onchange="loadImage(this)">
-                                <img id="imgupload" class="imgupload" src="theme/asset/images/empty_pic.png" alt="">                        
-                            </div>                            
+                            <div class="wrapperImage">
+                                <input id="fileUpload" name="fileUpload" multiple="multiple" type="file"><br/>
+                                <div id="image-holder"></div>
+                            </div>                             
                         </div>                    
                     </div>
                     <div class="modal-footer">

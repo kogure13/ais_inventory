@@ -21,23 +21,23 @@ $(document).ready(function () {
                 name: 'nama_kategori',
                 width: 120
             }, {
-                display: 'Items',
-                name: 'nama_jenis',
-                width: 220
-            }, {
                 display: 'Type',
                 name: 'kode_jenis',
                 width: 120
+            }, {
+                display: 'Description',
+                name: 'nama_jenis',
+                width: 220
+            }, {
+                display: 'Date Purchased',
+                name: 'date_purchase',                
+                align: 'center',
+                width: 100
             }, {
                 display: 'Quantity',
                 name: 'qty',
                 align: 'right',
                 width: 50
-            }, {
-                display: 'Date Purchased',
-                name: 'date_purchase',                
-                align: 'right',
-                width: 100
             }, {
                 display: 'Sample Foto',
                 name: 'sample_foto',                
@@ -68,7 +68,7 @@ $(document).ready(function () {
         usepager: true,
         useRp: true,
         rp: 10,
-        title: 'Data Jenis',
+        title: 'Data Asset',
         singleSelect: true,        
         striped: true,
         width: 'auto',
@@ -143,18 +143,18 @@ $(function () {
 
 function gridAction(com, grid) {
     if (com == 'Add') {
-        $('#add_model').modal('show');
+        $('#add_model').modal({backdrop: 'static', keyboard: false});
         $('#action').val('add');
-        $('.modal-title').html('Add Jenis/Items');
-        $('#imgupload').attr('src', 'theme/asset/images/empty_pic.png');
+        $('.modal-title').html('Add Items');
+        $("#image-holder").empty(); 
         $('#fileupload').val('');
     } else if (com == 'Edit') {
         if ($('.trSelected', grid).length > 0) {
             var id = 0;
 
-            $('#add_model').modal('show');
+            $('#add_model').modal({backdrop: 'static', keyboard: false});
             $('#action').val('edit');
-            $('.modal-title').html('Edit Jenis/Items');
+            $('.modal-title').html('Edit Items');
             $.each($('.trSelected', grid), function (key, value) {
                 $('#edit_id').val(value.children[0].innerText);
                 id = $('#edit_id').val();
@@ -194,7 +194,7 @@ function gridAction(com, grid) {
 }
 
 function ajaxAction(action) {
-    data = $('#frm_jenis').serializeArray();
+    data = $('#frm_jenis').serializeArray();    
 
     $.ajax({
         url: 'application/jenis/data_jenis.php',

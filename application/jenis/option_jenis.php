@@ -1,27 +1,21 @@
 <?php
-require_once '../../inc/config.php';
+require_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
+$connString = $db->getConn();
 
 $params = $_REQUEST;
 
-$optionClass = new Option($connString);
+$optionClass = new Option();
 $optionClass->getOption($params);
 
-class Option {
-    protected $conn;
-    protected $data = array();
-            
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
+class Option {    
     
     function getOption($params) {
         $json_data = array();
         $sql = "SELECT * FROM master_kategori";
-        $result = mysqli_query($this->conn, $sql);
+        $result = mysql_query($sql);
         
-        while ($row = mysqli_fetch_assoc($result)){
+        while ($row = mysql_fetch_assoc($result)){
             $json_data[] = $row;
         }                
         

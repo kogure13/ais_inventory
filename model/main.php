@@ -6,18 +6,19 @@
         <?php include 'model/header.php'; ?>
     </head>
     <body>        
-        <div class="wrapper">            
+        <div class="wrapper fill-height">            
             <div class="ais-header-strip"></div>
             <?php $main->getNavHead(); ?>
             <div class="ais-main">
-                <?php $main->getPage(); ?>
+                <?php $main->getPage(); ?>                
             </div>                       
         </div>
-        <footer>
-            <span class="text-capitalize">
-                IT-AIS Dev. &COPY; <?= date('Y') ?>
                 
+        <footer class="hidden-xs">
+            <span class="text-capitalize">
+                IT-AIS &COPY; <?= date('Y') ?>
+
             </span>    
-        </footer>        
+        </footer>              
     </body>
 </html>

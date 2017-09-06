@@ -1,10 +1,9 @@
 <?php 
 session_start();
 include_once 'inc/class.php';
-include_once 'inc/config.php';
 
 $db = new dbObj();
-$connString = $db->getConstring();
+$db->getConn();
 
 if(!isset($_SESSION['user_login'])){
     

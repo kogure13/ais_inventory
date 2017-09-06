@@ -26,8 +26,10 @@
                 <div class="pull-right text-right">
                     <div class="media">                        
                         <div class="media-body">
-                            <h5 class="media-heading text-capitalize text-info"> Asset Management System</h5>
-                            <span class="text-muted text-info">.::Data-Transaction-Repost::.</span>
+                            <i>
+                                <h5 class="media-heading text-capitalize text-muted"> Asset Management System</h5>
+                                <span class="text-muted">.::Data-Transaction-Repost::.</span>
+                            </i>
                         </div>
                     </div>
                 </div>
@@ -59,13 +61,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="?page=kategori">Category</a></li>                        
-                        <li><a href="?page=jenis">Jenis Asset</a></li>
+                        <li><a href="?page=jenis">Asset Items</a></li>
                         <li><a href="?page=location">Location</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="?page=users" id="users">Users/Agent</a></li>
-                        <li><a href="?page=department" id="department">Department</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="?page=th_ajar">Year Academic</a></li>
+                        <li><a href="?page=department" id="department">Department</a></li>                        
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -82,12 +82,11 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Agent Login Detail
+                        <?= $_SESSION['nama_user'] ?>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>                        
+                        <li><a href="?page=profile">Profile</a></li>                        
                         <li role="separator" class="divider"></li>
                         <li>
                             <a href="?page=logout">

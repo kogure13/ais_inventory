@@ -1,31 +1,25 @@
 <?php
 
-include_once '../../inc/config.php';
+include_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
-$locationClass = new location($connString);
+$connString = $db->getConn();
+$locationClass = new location();
 
+$key = (isset($_REQUEST['term']) != '') ? $_REQUEST['term'] : '';
 
-$key = $_REQUEST['term'];
 $locationClass->getLocation($key);
 
 class location {
-
-    protected $conn;
-
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
-
+    
     function getLocation($key) {
         $json_data = array();
 
         $sql = "SELECT * FROM master_location";
         $sql .= " WHERE kode_location LIKE '%{$key}%' OR nama_location LIKE '%{$key}%'";
-        $result = mysqli_query($this->conn, $sql) or die();
-        while ($row = mysqli_fetch_array($result)) {
+        $result = mysql_query($sql) or die();
+        while ($row = mysql_fetch_array($result)) {
             $json_data[] = array(
-                'label' => $row['kode_location'],
+                'label' => $row['kode_location'].' - '.$row['nama_location'],
                 'value' => '',
                 'id' => $row['id']
             );

@@ -1,10 +1,9 @@
 <?php
 
-include_once '../../inc/config.php';
+include_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
-$userClass = new User($connString);
-
+$connString = $db->getConn();
+$userClass = new User();
 
 if(!isset($_GET['id'])){
     exit();
@@ -19,20 +18,14 @@ if ($params > 0) {
 
 class User {
 
-    protected $conn;    
-
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
-
     function getUser($params) {
         $json_data = [];
         $sql = "SELECT * FROM pengguna";
         $sql .= " WHERE id = $params";
 
-        $result = mysqli_query($this->conn, $sql) or die();
+        $result = mysql_query($sql) or die();
                 
-        while ($row = mysqli_fetch_assoc($result)) {            
+        while ($row = mysql_fetch_assoc($result)) {            
             $json_data = $row;
         }
         echo json_encode($json_data);

@@ -1,14 +1,13 @@
 <?php
 
-include_once '../../inc/config.php';
+include_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
-$jenisClass = new Jenis($connString);
+$connString = $db->getConn();
+$jenisClass = new Jenis();
 
-
-if(!isset($_GET['id'])){
+if (!isset($_GET['id'])) {
     exit();
-}else{
+} else {
     $params = $_GET['id'];
 }
 if ($params > 0) {
@@ -19,22 +18,17 @@ if ($params > 0) {
 
 class Jenis {
 
-    protected $conn;    
-
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
-
     function getJenis($params) {
         $json_data = array();
         $sql = "SELECT * FROM master_jenis";
         $sql .= " WHERE id = $params";
 
-        $result = mysqli_query($this->conn, $sql) or die();
-                
-        while ($row = mysqli_fetch_assoc($result)) {            
+        $result = mysql_query($sql) or die();
+
+        while ($row = mysql_fetch_assoc($result)) {
             $json_data = $row;
         }
         echo json_encode($json_data);
     }
+
 }

@@ -1,13 +1,13 @@
-<div class="container-fluid">
+<div class="well" style="height: 100%;">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Form Asset Move</strong>
                     <span class="text-right pull-right text-muted" id="report-date"></span>
                 </div>
                 <form id="frm_checkin" enctype="multipart/form-data">
-                    <div class="panel-body">                    
+                    <div class="panel-body" style="overflow: scroll; min-height: 500px;">
                         <div class="form-group">
                             <label class="control-label" for="no_checkin">No. Asset Move:</label>
                             <input type="text" id="no_move" class="form-control input-sm" name="no_move" readonly="readonly">
@@ -20,7 +20,7 @@
                         <table class="table-condensed table-responsive form-group">
                             <tr>
                                 <td width="60%" style="padding-right: 5px">                                    
-                                    <label class="control-label" for="jenis_asset">Jenis Asset:</label>
+                                    <label class="control-label" for="jenis_asset">Items Asset:</label>
                                     <input type="hidden" id="id_jenis" name="id_jenis">
                                     <input type="text" id="jenis_asset" name="jenis_asset" class="form-control input-sm" readonly="readonly">                                    
                                 </td>
@@ -36,13 +36,13 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="descp">Description:</label>
-                            <textarea class="form-control input-sm" id="descp" name="descp"></textarea>
+                            <textarea class="form-control input-sm" id="descp" name="descp" style="resize: none"></textarea>
                         </div>
                         <table class="table-condensed table-responsive">
                             <tr>
                                 <td style="padding-right: 5px">
                                     <label class="control-label" for="checin_by">User:</label>
-                                    <input type="text" id="user_check" name="user_check" class="form-control input-sm" readonly="readonly">
+                                    <input type="text" id="user_check" name="user_check" class="form-control input-sm" readonly="readonly" value="<?=$_SESSION['nama_user']?>">
                                 </td>
                                 <td>
                                     <label class="control-label" for="checin_by">Date Process:</label>
@@ -59,8 +59,10 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-8 hidden-sm hidden-xs">
-            <table id="queue_checkout" style="display: none"></table>
+        <div class="col-sm-9 hidden-sm hidden-xs">
+            <div class="well">
+                <table id="queue_checkout" style="display: none"></table>
+            </div>            
         </div>
     </div>    
 </div>

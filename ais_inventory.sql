@@ -2,18 +2,39 @@
 Navicat MySQL Data Transfer
 
 Source Server         : server128
-Source Server Version : 50522
+Source Server Version : 50719
 Source Host           : 192.168.0.128:3306
 Source Database       : ais_inventory
 
 Target Server Type    : MYSQL
-Target Server Version : 50522
+Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-05-31 14:35:28
+Date: 2017-09-06 12:28:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for data_check_in
+-- ----------------------------
+DROP TABLE IF EXISTS `data_check_in`;
+CREATE TABLE `data_check_in` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `no_check_in` varchar(255) DEFAULT NULL,
+  `id_jenis` int(11) DEFAULT NULL,
+  `qty_jenis` int(11) DEFAULT NULL,
+  `location` int(11) DEFAULT NULL,
+  `keterangan` text,
+  `user_check_in` int(11) DEFAULT NULL,
+  `date_check_in` date DEFAULT NULL,
+  `sample_foto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of data_check_in
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for data_pegawai
@@ -106,7 +127,7 @@ CREATE TABLE `master_jenis` (
   `date_purchase` date DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=493 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=494 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_jenis
@@ -115,11 +136,11 @@ INSERT INTO `master_jenis` VALUES ('1', '8', 'Meja Venus', 'Meja Samping Venus.V
 INSERT INTO `master_jenis` VALUES ('2', '8', 'Lemari', 'Laci Gantung Venus.VP 82 Abu-Abu', '', '2007-01-18', '1');
 INSERT INTO `master_jenis` VALUES ('3', '8', 'Kursi Chitose', 'Kursi Sakata  N Chitose Biru', '', '2007-01-22', '8');
 INSERT INTO `master_jenis` VALUES ('4', '8', 'Lemari Arsip', 'Filling Cabinet Type C4-BK1-18', '', '2007-03-26', '1');
-INSERT INTO `master_jenis` VALUES ('5', '8', '', 'Rak / Organizer u/ menyimpan Brosur ', '', '2007-04-19', '1');
+INSERT INTO `master_jenis` VALUES ('5', '8', 'Lemari', 'Rak / Organizer u/ menyimpan Brosur ', '', '2007-04-19', '1');
 INSERT INTO `master_jenis` VALUES ('6', '8', 'Kursi Chitose', 'Kursi Chitose New Caesar N Chair', '', '2007-06-07', '4');
-INSERT INTO `master_jenis` VALUES ('7', '8', '', 'Meja 120x60x75 Venus. VD102G Abu-Abu', '', '2007-06-07', '4');
+INSERT INTO `master_jenis` VALUES ('7', '8', 'Meja', 'Meja 120x60x75 Venus. VD102G Abu-Abu', '', '2007-06-07', '4');
 INSERT INTO `master_jenis` VALUES ('8', '8', 'Lemari', 'Lemari Venus. VS78G Abu-Abu', '', '2007-06-07', '1');
-INSERT INTO `master_jenis` VALUES ('9', '8', '', 'GO Working Table 6 Workstation', '', '2007-06-28', '4');
+INSERT INTO `master_jenis` VALUES ('9', '8', 'Meja', 'GO Working Table 6 Workstation', '', '2007-06-28', '4');
 INSERT INTO `master_jenis` VALUES ('10', '8', 'Lemari', 'Rak Buku Perpustakaan', '', '2007-07-19', '10');
 INSERT INTO `master_jenis` VALUES ('11', '8', 'Kursi Oya', 'Kursi Oya Kids', '', '2007-07-31', '4');
 INSERT INTO `master_jenis` VALUES ('12', '8', 'Meja Oya', 'Meja Oya Kids', '', '2007-07-31', '1');
@@ -133,8 +154,8 @@ INSERT INTO `master_jenis` VALUES ('19', '8', '', '1 bh. Meja Kantor Venus VD02C
 INSERT INTO `master_jenis` VALUES ('20', '8', '', '1 bh. Laci Meja Kantor Venus VP82C', '', '2007-08-01', '1');
 INSERT INTO `master_jenis` VALUES ('21', '8', '', ' 5 lbr Karpet Uk 4 x 7.5 m u/ Mushola', '', '2007-08-01', '5');
 INSERT INTO `master_jenis` VALUES ('22', '8', '', '26 Meja & Kursi Makan u/ Kantin AIS', '', '2007-08-01', '26');
-INSERT INTO `master_jenis` VALUES ('23', '8', '', '\"Oya Kids Chair & Table\" u/ Kelas', '', '2007-08-08', '4');
-INSERT INTO `master_jenis` VALUES ('24', '8', '', '\"Oya Kids Chair & Table\" u/ Kelas', '', '2007-08-09', '4');
+INSERT INTO `master_jenis` VALUES ('23', '8', 'Kursi Oya', '\"Oya Kids Chair & Table\" u/ Kelas', '', '2007-08-08', '4');
+INSERT INTO `master_jenis` VALUES ('24', '8', 'Kursi Oya', '\"Oya Kids Chair & Table\" u/ Kelas', '', '2007-08-09', '4');
 INSERT INTO `master_jenis` VALUES ('25', '8', '', '8 Lembar Karpet u/ di Mushola AIS', '', '2007-08-23', '8');
 INSERT INTO `master_jenis` VALUES ('26', '8', '', '36 Unit Locker Siswa', '', '2007-08-30', '36');
 INSERT INTO `master_jenis` VALUES ('27', '8', '', '25 Unit meja Komputer', '', '2007-08-30', '25');
@@ -150,7 +171,7 @@ INSERT INTO `master_jenis` VALUES ('36', '8', 'Lemari', 'Key Box', '', '2008-04-
 INSERT INTO `master_jenis` VALUES ('37', '8', '', 'Meja Laboratorium u/ Demonstrasi Guru', '', '2008-04-18', '1');
 INSERT INTO `master_jenis` VALUES ('38', '8', 'Kursi Chitose', 'Kursi Chitose Echool No. 5', '', '2008-08-07', '25');
 INSERT INTO `master_jenis` VALUES ('39', '8', 'Meja Chitose', 'Meja Chitose Echool No. 5', '', '2008-08-07', '25');
-INSERT INTO `master_jenis` VALUES ('40', '8', '', 'Kursi Chitose Caesar N', '', '2008-08-07', '3');
+INSERT INTO `master_jenis` VALUES ('40', '8', 'Kursi Chitose', 'Kursi Chitose Caesar N', '', '2008-08-07', '3');
 INSERT INTO `master_jenis` VALUES ('41', '8', '', 'Etalase Koperasi Uk. 150 x 44 x 100 Cm', '', '2008-08-15', '2');
 INSERT INTO `master_jenis` VALUES ('42', '8', '', 'Etalase Kantin Uk. 150 x 70 x 148 Cm', '', '2008-08-15', '1');
 INSERT INTO `master_jenis` VALUES ('43', '8', '', 'Lemari ( u/ Zat & Perlengkapan Lab. Science)', '', '2008-08-21', '1');
@@ -207,7 +228,7 @@ INSERT INTO `master_jenis` VALUES ('93', '8', '', '2 Unit Meja Kerja tanpa Laci'
 INSERT INTO `master_jenis` VALUES ('94', '8', 'Kursi', '16 unit Kursi Putar', '', '2010-10-11', '16');
 INSERT INTO `master_jenis` VALUES ('95', '8', '', '1 Set Meja Kursi Guru', '', '2010-10-11', '1');
 INSERT INTO `master_jenis` VALUES ('96', '8', '', 'locker 4 pintu 22 bh u/ siswa', '', '2011-08-01', '22');
-INSERT INTO `master_jenis` VALUES ('97', '8', '', ' meja bangku kantin sekolah AISIS 3 set', '', '2011-08-15', '3');
+INSERT INTO `master_jenis` VALUES ('97', '8', 'Meja', ' meja bangku kantin sekolah AISIS 3 set', '', '2011-08-15', '3');
 INSERT INTO `master_jenis` VALUES ('98', '8', '', 'By beli 4 bh kursi Chitose u/ R. P\'Johari', '', '2011-08-22', '4');
 INSERT INTO `master_jenis` VALUES ('99', '8', '', '22 Set Echool No. 5', '', '2011-09-05', '22');
 INSERT INTO `master_jenis` VALUES ('100', '8', '', '44 Set Echool No. 6', '', '2011-09-05', '44');
@@ -269,7 +290,7 @@ INSERT INTO `master_jenis` VALUES ('155', '8', '', '26 Bh Meja Belajar SD', '', 
 INSERT INTO `master_jenis` VALUES ('156', '8', '', '61 Bh Kursi Belajar SMP & SMA', '', '2014-08-21', '61');
 INSERT INTO `master_jenis` VALUES ('157', '8', '', '29 Bh Meja Belajar Siswa SMP & SMA', '', '2014-08-21', '29');
 INSERT INTO `master_jenis` VALUES ('158', '8', '', '64 Set Locker 4 Pintu u/ Siswa', '', '2014-08-21', '64');
-INSERT INTO `master_jenis` VALUES ('159', '8', '', ' Meja Saji Kantin', '', '2014-09-01', '4');
+INSERT INTO `master_jenis` VALUES ('159', '8', 'Meja', ' Meja Saji Kantin', '', '2014-09-01', '4');
 INSERT INTO `master_jenis` VALUES ('160', '8', '', 'Meja Saji Kantin', '', '2014-09-01', '2');
 INSERT INTO `master_jenis` VALUES ('161', '8', '', 'Filling Cabinet 4 Laci 0.6mm Abu', '', '2014-12-02', '4');
 INSERT INTO `master_jenis` VALUES ('162', '8', '', 'Whiteboard Kensi Double Force + Kaki 120x240', '', '2014-12-09', '1');
@@ -311,7 +332,7 @@ INSERT INTO `master_jenis` VALUES ('197', '8', 'Lemari', '1 Unit Loker 3 Pintu U
 INSERT INTO `master_jenis` VALUES ('198', '8', '', '4 Unit Rak Serba Guna 5 Tahap', '', '2016-07-26', '4');
 INSERT INTO `master_jenis` VALUES ('199', '8', '', '5 Rak Berkas 100x200x60cm / TK AIS', '', '2016-08-02', '5');
 INSERT INTO `master_jenis` VALUES ('200', '8', '', '16 Unit Kursi Merk Rakuda type kp 327+gas', '', '2016-08-09', '16');
-INSERT INTO `master_jenis` VALUES ('201', '8', '', ' Meja Kerja Rangka Jati Merk VIV MV501', '', '2016-08-09', '1');
+INSERT INTO `master_jenis` VALUES ('201', '8', 'Meja', ' Meja Kerja Rangka Jati Merk VIV MV501', '', '2016-08-09', '1');
 INSERT INTO `master_jenis` VALUES ('202', '8', '', '3 Unit Whiteboard 7mx1.2m', '', '2016-08-09', '3');
 INSERT INTO `master_jenis` VALUES ('203', '8', '', '8 Set Partisi L (Meja di Ruang Guru )', '', '2016-08-09', '8');
 INSERT INTO `master_jenis` VALUES ('204', '8', '', '5 Unit Lemari Piala AIS', '', '2016-08-15', '5');
@@ -408,7 +429,7 @@ INSERT INTO `master_jenis` VALUES ('294', '10', '', 'White Board + Softboard Sli
 INSERT INTO `master_jenis` VALUES ('295', '10', '', 'Soft Bpard Single Face Gantung 120x720 cm', '', '2010-06-28', '2');
 INSERT INTO `master_jenis` VALUES ('296', '10', '', 'Soft Board Single Face Gantung 120x376 cm', '', '2010-06-28', '1');
 INSERT INTO `master_jenis` VALUES ('297', '10', '', 'Soft Board Single Face Gantung 120x384 cm', '', '2010-06-28', '1');
-INSERT INTO `master_jenis` VALUES ('298', '10', '', 'Projector NEC Tyoe NP115', '', '2010-07-14', '2');
+INSERT INTO `master_jenis` VALUES ('298', '10', 'Projector', 'Projector NEC Tyoe NP115', '', '2010-07-14', '2');
 INSERT INTO `master_jenis` VALUES ('299', '10', '', 'Braket, Kabel VGA-Video-Listrik-Duck', '', '2010-08-27', '2');
 INSERT INTO `master_jenis` VALUES ('300', '10', '', 'Neraca Digital Ohaus 200g 0.1g / Lab Science IGCSE', '', '2010-09-07', '1');
 INSERT INTO `master_jenis` VALUES ('301', '10', '', '2 Unit UPS Prolink Pro 600', '', '2010-10-15', '2');
@@ -422,7 +443,6 @@ INSERT INTO `master_jenis` VALUES ('309', '10', '', 'TOA Wireles Amplifier Set',
 INSERT INTO `master_jenis` VALUES ('310', '10', '', 'Megaphone TOA', '', '2011-01-28', '1');
 INSERT INTO `master_jenis` VALUES ('311', '10', '', 'Mesin Bor Rotary Hammer Bosch GBH-2-18 RE', '', '2011-03-31', '1');
 INSERT INTO `master_jenis` VALUES ('312', '10', '', 'Window Multipoint 1 Server+5 CAL USD.258xRp.8.725', '', '2011-04-19', '1');
-INSERT INTO `master_jenis` VALUES ('313', '10', '', 'PPN 6 Window Multipoint USD.2,58xRp.8.663', '', '2011-04-19', '1');
 INSERT INTO `master_jenis` VALUES ('314', '10', '', 'N-Computing Device X Series USD.430xRp.8.725', '', '2011-04-19', '1');
 INSERT INTO `master_jenis` VALUES ('315', '10', '', 'Hand Phone u/ Hotline Services  Nokia 1800/Black', '', '2011-04-05', '1');
 INSERT INTO `master_jenis` VALUES ('317', '10', '', 'Sony Handycam DCR SD-44E No. 1779037.K', '', '2011-04-29', '1');
@@ -482,7 +502,7 @@ INSERT INTO `master_jenis` VALUES ('370', '10', '', 'Public System Outdoor', '',
 INSERT INTO `master_jenis` VALUES ('371', '10', '', 'MS.Office (1.656,00 x $9700)+(165,60xRp.9579)', '', '2012-09-27', '24');
 INSERT INTO `master_jenis` VALUES ('372', '10', '', 'External DVD Lite On', '', '2012-10-31', '1');
 INSERT INTO `master_jenis` VALUES ('373', '10', '', '1 Unit Brancard Lipat 2 Helper / Tandu', '', '2012-12-10', '1');
-INSERT INTO `master_jenis` VALUES ('374', '10', '', 'Projector NEC NPV260G', '', '2012-12-10', '11');
+INSERT INTO `master_jenis` VALUES ('374', '10', 'Projector', 'Projector NEC NPV260G', '', '2012-12-10', '11');
 INSERT INTO `master_jenis` VALUES ('375', '10', '', 'Wallmount 8U depth 500mm', '', '2012-12-12', '2');
 INSERT INTO `master_jenis` VALUES ('376', '10', '', 'OTB RackMount E w/ 12 ST Coupler', '', '2012-12-12', '1');
 INSERT INTO `master_jenis` VALUES ('377', '10', '', '4 Unit Media Converter SM Mbps', '', '2012-12-12', '1');
@@ -511,37 +531,29 @@ INSERT INTO `master_jenis` VALUES ('399', '10', '', 'UPS Prolink Pro 700A', '', 
 INSERT INTO `master_jenis` VALUES ('400', '10', '', '2 Speaker Aktive Merk Huper', '', '2013-08-30', '2');
 INSERT INTO `master_jenis` VALUES ('401', '10', '', '2 Set ( 4 Unit ) Microphone Wireless Merk Depon', '', '2013-08-30', '4');
 INSERT INTO `master_jenis` VALUES ('402', '10', '', 'Dosing Pump Prominent Type Beta 4b0708PVT', '', '2013-09-19', '1');
-INSERT INTO `master_jenis` VALUES ('403', '10', '', 'PPN Dosing Pump Prominent 10%xRp.8.500.000', '', '2013-09-19', '1');
 INSERT INTO `master_jenis` VALUES ('404', '10', '', 'Smart DVR JMK 9416HD u/ CCTV', '', '2013-09-19', '1');
 INSERT INTO `master_jenis` VALUES ('405', '10', '', '3 Unit Outdoor Camera JMK KJS338 u/ CCTV', '', '2013-09-19', '3');
 INSERT INTO `master_jenis` VALUES ('406', '10', '', 'Outdoor TPY-705HRS lens 16mm u/ CCTV', '', '2013-09-19', '1');
 INSERT INTO `master_jenis` VALUES ('407', '10', '', '3 Unit Outdoor RGS-93 u/ CCTV', '', '2013-09-19', '3');
 INSERT INTO `master_jenis` VALUES ('408', '10', '', '5 Unit Indoor RGS-10HRS u/ CCTV', '', '2013-09-19', '5');
-INSERT INTO `master_jenis` VALUES ('409', '10', '', 'TCL LED 32\" TV Monitor u/ CCTV', '', '2013-09-19', '1');
+INSERT INTO `master_jenis` VALUES ('409', '10', 'Monitor', 'TCL LED 32\" TV Monitor u/ CCTV', '', '2013-09-19', '1');
 INSERT INTO `master_jenis` VALUES ('410', '10', '', '2 Unit Seagate HDD 2TB u/ CCTV', '', '2013-09-19', '2');
 INSERT INTO `master_jenis` VALUES ('411', '10', '', 'Prolink UPS 1200VA u/ CCTV', '', '2013-09-19', '1');
-INSERT INTO `master_jenis` VALUES ('412', '10', '', 'PPN Equipment u/ CCTV 10%xRp.17.900.500', '', '2013-09-19', '1');
 INSERT INTO `master_jenis` VALUES ('413', '10', '', 'Kamera digital utk lapangan', '', '2013-11-08', '1');
 INSERT INTO `master_jenis` VALUES ('414', '10', '', '1 Unit IBM Server X3100 M4 USD2.000xRp11.600', '', '2014-03-07', '1');
-INSERT INTO `master_jenis` VALUES ('415', '10', '', 'PPN 1 Unit IBM Server X3100 10%xUSD2.000xRp12.184', '', '2014-03-07', '1');
 INSERT INTO `master_jenis` VALUES ('416', '10', '', '5 Pcs MS Winsvrstd 2012 USD.33.95xRp.11.450', '', '2014-04-15', '5');
-INSERT INTO `master_jenis` VALUES ('417', '10', '', 'PPN MS Winsvrstd 10%xUSD.33.95xRp.11.381', '', '2014-04-15', '1');
 INSERT INTO `master_jenis` VALUES ('418', '10', '', '1 Pc MS Winsrvstd 2012R2 USD.203xRp.11.450', '', '2014-04-15', '1');
-INSERT INTO `master_jenis` VALUES ('419', '10', '', 'PPN MS Winsvrstd 10%xUSD.203xRp.11.381', '', '2014-04-15', '1');
 INSERT INTO `master_jenis` VALUES ('420', '10', '', 'Keyboard Casio CT7000 dan Stand', '', '2014-04-29', '1');
 INSERT INTO `master_jenis` VALUES ('421', '10', '', '12 Pcs Sound Speaker Kelas AISIS', '', '2014-06-03', '12');
 INSERT INTO `master_jenis` VALUES ('422', '10', '', '1 Bh Mesin Las', '', '2014-06-17', '1');
-INSERT INTO `master_jenis` VALUES ('423', '10', '', 'PPN 1 Bh Mesin Las 10%xRp.2.754.000', '', '2014-06-17', null);
 INSERT INTO `master_jenis` VALUES ('424', '10', '', 'RAM & HDD Internal', '', '2014-07-24', '1');
 INSERT INTO `master_jenis` VALUES ('425', '10', '', 'Mesin Dynamic 330', '', '2014-08-06', '1');
 INSERT INTO `master_jenis` VALUES ('426', '10', '', 'Neraca Digital Ohause 200g 0.1 g', '', '2014-12-16', '1');
 INSERT INTO `master_jenis` VALUES ('427', '10', '', '1 Pcs Alat Pemadam Api', '', '2014-12-16', '1');
 INSERT INTO `master_jenis` VALUES ('428', '10', '', 'Solution Absen Sidik Jari X100C', '', '2014-12-22', '1');
-INSERT INTO `master_jenis` VALUES ('429', '10', '', 'PPN Solution Absen Sidik Jari X100C 10%xRp.1.8jt', '', '2014-12-22', null);
 INSERT INTO `master_jenis` VALUES ('430', '10', '', 'Scanner Panasonic + Software SMR', '', '2015-01-08', '1');
-INSERT INTO `master_jenis` VALUES ('431', '10', '', 'PPN  Scanner+Software SMR 10%xRp.17.727.273', '', '2015-01-08', null);
 INSERT INTO `master_jenis` VALUES ('432', '10', '', 'Portable Active Speaker Type MO32362W', '', '2015-01-13', '6');
-INSERT INTO `master_jenis` VALUES ('433', '10', '', 'Projector Microvision MS 330', '', '2015-01-13', '8');
+INSERT INTO `master_jenis` VALUES ('433', '10', 'Projector', 'Projector Microvision MS 330', '', '2015-01-13', '8');
 INSERT INTO `master_jenis` VALUES ('434', '10', '', 'Screen 70\" Manual u/ Projector', '', '2015-01-13', '8');
 INSERT INTO `master_jenis` VALUES ('435', '10', '', '1 Set Conga', '', '2015-01-27', '1');
 INSERT INTO `master_jenis` VALUES ('436', '10', '', 'RAM', '', '2015-01-27', '1');
@@ -556,27 +568,18 @@ INSERT INTO `master_jenis` VALUES ('444', '10', '', '1 Unit AC Split Panasonic S
 INSERT INTO `master_jenis` VALUES ('445', '10', '', '7 Paket Multimedia Projector + Instalasi', '', '2015-06-23', '1');
 INSERT INTO `master_jenis` VALUES ('446', '10', '', 'HP Hotline AIS', '', '2015-08-19', '1');
 INSERT INTO `master_jenis` VALUES ('447', '10', '', '1 Unit PC Lenovo Edge 73+ Monitor 18.5 LED', '', '2015-09-15', '1');
-INSERT INTO `master_jenis` VALUES ('448', '10', '', 'PPN 1 Unit PC Lenovo + Monitor 18.5 10%xRp.6.2j', '', '2015-09-15', '1');
 INSERT INTO `master_jenis` VALUES ('449', '10', '', '1 Unit UPS APC 650 VA, 230 V, AVR', '', '2015-09-15', '1');
-INSERT INTO `master_jenis` VALUES ('450', '10', '', 'PPN 1 Unit UPS APC 650 VA 230 V AVR 10%xRp.445.000', '', '2015-09-15', '1');
 INSERT INTO `master_jenis` VALUES ('451', '10', '', '1 Unit HP Lasetjet Pro P1102w', '', '2015-09-15', '1');
-INSERT INTO `master_jenis` VALUES ('452', '10', '', 'PPN 1 Unit HP Lasetjet Pro P1102w 10%xRp.1.11jt', '', '2015-09-15', '1');
 INSERT INTO `master_jenis` VALUES ('453', '10', '', '6 Unit PC Lenovo Edge 73 + Monitor 18.5 LED', '', '2015-09-15', '1');
-INSERT INTO `master_jenis` VALUES ('454', '10', '', 'PPN 6 Unit PC Lenovo Edge 73 10%xRp.37.2jt', '', '2015-09-15', '1');
 INSERT INTO `master_jenis` VALUES ('455', '10', '', '16 Unit UPS ICA 1200 CS1238', '', '2015-09-15', '1');
-INSERT INTO `master_jenis` VALUES ('456', '10', '', 'PPN 16 Unit UPS ICA1200CS1238 10%xRp.19.2jt', '', '2015-09-15', '1');
 INSERT INTO `master_jenis` VALUES ('457', '10', '', '1 Unit AC Single Split Merk Daikin (1.5 Pk)', '', '2015-10-01', '1');
-INSERT INTO `master_jenis` VALUES ('458', '10', '', 'PPN 1 AC Single Split Daikin  10%xRp.5.106.150', '', '2015-10-01', '1');
 INSERT INTO `master_jenis` VALUES ('459', '10', '', '2 Unit AC Single Split Merk Daikin (2Pk)', '', '2015-10-01', '1');
-INSERT INTO `master_jenis` VALUES ('460', '10', '', 'PPN 2 AC Single Split Daikin 2Pk 10%xRp.13.561.800', '', '2015-10-01', '1');
 INSERT INTO `master_jenis` VALUES ('461', '10', '', '7 Unit Office 2013 SNGL OLP NL Acdmc', '', '2015-12-01', '1');
-INSERT INTO `master_jenis` VALUES ('462', '10', '', 'PPN 7 Office 2013 SNGLOLPNLAcdmc 10%xRp.5,425jt', '', '2015-12-01', '1');
 INSERT INTO `master_jenis` VALUES ('463', '10', '', '2bh Tenda Dome 2x2 m', '', '2015-12-10', '1');
 INSERT INTO `master_jenis` VALUES ('464', '10', '', '2bh Tenda Pramuka 3x4m', '', '2015-12-10', '1');
 INSERT INTO `master_jenis` VALUES ('465', '10', '', 'Media Converter Fiber Optic FL-811GMA-11-5-A', '', '2016-01-19', '1');
 INSERT INTO `master_jenis` VALUES ('466', '10', '', '3 Unit Switch 16 Port Gigabyte D-link', '', '2016-01-19', '3');
-INSERT INTO `master_jenis` VALUES ('467', '10', '', 'PPN 3 Unit Switch 16 Port G D-link 10%xRp.3.75jt', '', '2016-01-19', null);
-INSERT INTO `master_jenis` VALUES ('468', '10', '', '2 bh Monitor u/ di Labkom (LG LED)', '', '2016-01-20', '2');
+INSERT INTO `master_jenis` VALUES ('468', '10', 'Monitor', '2 bh Monitor u/ di Labkom (LG LED)', '', '2016-01-20', '2');
 INSERT INTO `master_jenis` VALUES ('469', '10', '', ' 2 Unit Sound System Aubern Pop Table PSB', '', '2016-02-16', '2');
 INSERT INTO `master_jenis` VALUES ('470', '10', '', '3bh Speaker untuk level EC', '', '2016-03-17', '3');
 INSERT INTO `master_jenis` VALUES ('471', '10', '', 'Scanner untuk level EC', '', '2016-03-17', '1');
@@ -584,9 +587,7 @@ INSERT INTO `master_jenis` VALUES ('472', '10', '', '1 Bh Alat Music Cello Merk 
 INSERT INTO `master_jenis` VALUES ('473', '10', '', '1 Bh Alat Music Cello Merk Astig 4/4', '', '2016-03-22', '1');
 INSERT INTO `master_jenis` VALUES ('474', '10', 'Jam', '2 Unit Jam LED 48x19x5', '', '2016-08-23', '2');
 INSERT INTO `master_jenis` VALUES ('475', '10', '', 'PC Lenovo S500 utk TK-SMA AIS', '', '2016-10-04', '7');
-INSERT INTO `master_jenis` VALUES ('476', '10', '', 'PPN PC Lenovo S500 10%x39.550.000', '', '2016-10-04', '7');
 INSERT INTO `master_jenis` VALUES ('477', '10', '', 'Scanner Canon Lide R. Guru&Kelas AIS', '', '2016-10-04', '2');
-INSERT INTO `master_jenis` VALUES ('478', '10', '', 'PPN  Scanner Canon Lide 10%x2.240.000', '', '2016-10-04', '2');
 INSERT INTO `master_jenis` VALUES ('479', '10', '', 'UPS ICA CE600', '', '2016-10-18', '5');
 INSERT INTO `master_jenis` VALUES ('480', '10', '', 'Printer Epson L360', '', '2016-10-18', '1');
 INSERT INTO `master_jenis` VALUES ('481', '10', '', 'Printer Epson L120', '', '2016-10-18', '2');
@@ -601,6 +602,7 @@ INSERT INTO `master_jenis` VALUES ('489', '10', '', '6 Bh Wall Fan Regency TW 14
 INSERT INTO `master_jenis` VALUES ('490', '10', '', '10 Bh Wall Fan Regency TW 16\"', '', '2017-01-25', '10');
 INSERT INTO `master_jenis` VALUES ('491', '10', '', '3 Bh Wall Fan Regency TW 20\"', '', '2017-01-25', '3');
 INSERT INTO `master_jenis` VALUES ('492', '10', '', 'Pembl. 8 unit Amplifier utk kelas', '', '2017-04-11', '8');
+INSERT INTO `master_jenis` VALUES ('493', '10', 'BELL', 'Round Bell', null, '2017-06-01', '1');
 
 -- ----------------------------
 -- Table structure for master_kategori
@@ -658,12 +660,20 @@ CREATE TABLE `master_location` (
   `kode_location` varchar(255) DEFAULT NULL,
   `nama_location` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_location
 -- ----------------------------
-INSERT INTO `master_location` VALUES ('1', 'E-G-1', 'Ruang Maintenance Unit');
+INSERT INTO `master_location` VALUES ('1', 'E-UG-1', 'Ruang Maintenance Unit');
+INSERT INTO `master_location` VALUES ('2', 'F-UG-1', 'Ruang Seni Musik');
+INSERT INTO `master_location` VALUES ('3', 'G-UG-1', 'Ruang Mandi Putra');
+INSERT INTO `master_location` VALUES ('4', 'G-UG-2', 'Ruang Olah Raga / PE Room');
+INSERT INTO `master_location` VALUES ('5', 'G-UG-3', 'Ruang Mandi Putri');
+INSERT INTO `master_location` VALUES ('6', 'H-G-1', 'Aula Makan / Dinning Hall');
+INSERT INTO `master_location` VALUES ('7', 'H-G-1A', 'Healthy Lunch Booth');
+INSERT INTO `master_location` VALUES ('8', 'H-G-1B', 'Uniform Booth');
+INSERT INTO `master_location` VALUES ('9', 'H-G-1C', 'Denver Chicken Booth');
 
 -- ----------------------------
 -- Table structure for master_pengguna
@@ -716,17 +726,19 @@ CREATE TABLE `pengguna` (
   `role` int(11) NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `status` int(11) DEFAULT '0',
+  `login_status` int(11) DEFAULT '0',
+  `foto_profile` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pengguna
 -- ----------------------------
-INSERT INTO `pengguna` VALUES ('1', '0', '', 'Admin', 'admin123', 'admin123!', '99', 'Administrator', '1');
-INSERT INTO `pengguna` VALUES ('11', '0', '', 'Agung Supartono', 'kogure13', 'qazplm990', '7', 'Operator', '1');
-INSERT INTO `pengguna` VALUES ('12', '0', '', 'M. Ali Suseno', 'smoThink', 'qwe123456', '2', 'Moderator', '1');
-INSERT INTO `pengguna` VALUES ('13', '0', '', 'Aburahman Sidiq', 'rahman89', 'rahman134', '6', 'Operator', '1');
-INSERT INTO `pengguna` VALUES ('14', '0', '', 'Ivan Haris Prayoga', 'ipank68', 'sahabtsatu', '8', 'Auditor', '1');
+INSERT INTO `pengguna` VALUES ('1', '0', '', 'Admin', 'admin123', 'admin123!!', '99', 'Administrator', '1', '0', null);
+INSERT INTO `pengguna` VALUES ('11', '0', '', 'Agung Supartono', 'kogure13', 'qazplm990', '7', 'Operator', '1', '0', 'server/uploads/images/s200_agung.supartono.jpg');
+INSERT INTO `pengguna` VALUES ('12', '0', '', 'M. Ali Suseno', 'smoo7hink', 'qwe123456', '2', 'Moderator', '1', '1', 'server/uploads/images/mas.1986.jpg');
+INSERT INTO `pengguna` VALUES ('13', '0', '', 'Aburahman Sidiq', 'rahman898', 'rahman134', '6', 'Operator', '1', '0', null);
+INSERT INTO `pengguna` VALUES ('14', '0', '', 'Ivan Haris Prayoga', 'ipank68', 'sahabat1', '8', 'Auditor', '1', '0', null);
 
 -- ----------------------------
 -- Table structure for th_ajaran

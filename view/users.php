@@ -6,11 +6,10 @@
     <div id="add_model" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-header">                    
                     <h4 class="modal-title"></h4>
                 </div>
-                <form id="frm_users">
+                <form id="frm_users" name="frm_users" method="post">
                     <div class="modal-body">
                         <input type="hidden" value="add" name="action" id="action">
                         <input type="hidden" value="0" name="edit_id" id="edit_id">
@@ -27,15 +26,19 @@
                             </div>                            
                         </div>                        
                         <div class="form-group">
-                            <label for="nama_user" class="control-label">Nama Lengkap:</label>
-                            <input type="text" class="form-control input-sm" id="nama_user" name="nama_user"/>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="nama_user" class="control-label">Surname:</label>
+                                    <input type="text" class="form-control input-sm" id="nama_user" name="nama_user"/>
+                                </div>                            
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-5">
                                     <label for="role" class="control-label">Role</label>
                                     <select name="role" id="role" class="form-control input-sm">
-                                        <option value="0">...</option>
+                                        <option>...</option>
                                         <option value="1">Administrator</option>
                                         <option value="2">Moderator</option>
                                         <option value="6">Operator / Asseting Furniture</option>
@@ -47,7 +50,7 @@
                                 <div class="col-sm-4">
                                     <label for="status" class="control-label">Status</label>
                                     <select name="status" id="status" class="form-control input-sm">
-                                        <option value="99">...</option>
+                                        <option>...</option>
                                         <option value="0">Tidak Aktif</option>
                                         <option value="1">Aktif</option>
                                     </select>

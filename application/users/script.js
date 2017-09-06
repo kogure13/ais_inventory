@@ -46,6 +46,9 @@ $(document).ready(function () {
                 onpress: gridAction
             }
         ],
+        searchitems: [
+            {display: 'Username', name: 'username'}            
+        ],
         sortname: 'no_induk',
         sortorder: 'asc',
         usepager: true,
@@ -87,6 +90,12 @@ $(function () {
                 pwcheck: /^[A-Za-z0-9\d=!\-@._*]+$/,
                 minlength: 8
             },
+            role: {
+                required: true                
+            },
+            status: {
+                required: true
+            }
         },
         messages: {
             username: {
@@ -97,6 +106,12 @@ $(function () {
                 required: 'Password cannot empty',
                 pwcheck: 'at least capital, lower and numeric allowed',
                 minlength: 'min 8 characters'
+            },
+            role: {
+                required: 'value not selected'
+            },
+            status: {
+                required: 'value not selected'
             }
         },
         submitHandler: function (form) {
@@ -118,14 +133,14 @@ $(function () {
 
 function gridAction(com, grid) {
     if (com == 'Add') {
-        $('#add_model').modal('show');
+        $('#add_model').modal({backdrop:'static', keyboard:false});
         $('#action').val('add');
         $('.modal-title').html('Add Users');
     } else if (com == 'Edit') {
         if ($('.trSelected', grid).length > 0) {
             var id = 0;
 
-            $('#add_model').modal('show');
+            $('#add_model').modal({backdrop:'static', keyboard:false});
             $('#action').val('edit');
             $('.modal-title').html('Edit Users');
             $.each($('.trSelected', grid), function (key, value) {

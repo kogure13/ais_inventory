@@ -1,13 +1,15 @@
 <?php
 
-require_once '../../inc/config.php';
+require_once '../../inc/class.php';
 $db = new dbObj();
-$connString = $db->getConstring();
+$connString = $db->getConn();
 
 $params = $_REQUEST;
 
 $action = isset($params['action']) != '' ? $params['action'] : '';
-$jenisClass = new Jenis($connString);
+$jenisClass = new Jenis();
+
+
 
 switch ($action) {
     case 'add' : $jenisClass->insertJenis($params);
@@ -22,14 +24,9 @@ switch ($action) {
 }
 
 class Jenis {
-
-    protected $conn;
+    
     protected $data = [];
-
-    function __construct($connString) {
-        $this->conn = $connString;
-    }
-
+    
     public function getJenis($params) {
         $this->data = $this->getRecords($params);
         echo json_encode($this->data);
@@ -50,24 +47,25 @@ class Jenis {
                 . "master_jenis.qty, master_jenis.date_purchase, "
                 . "master_kategori.nama_kategori";
         $sql .= " FROM master_jenis ";
-        $sql .= " INNER JOIN master_kategori ON master_jenis.id_kategori = master_kategori.id ";
-        
-        $sqlTot = $sql;
+        $sql .= " INNER JOIN master_kategori ON master_jenis.id_kategori = master_kategori.id ";        
         $sql .= $qsearch;
-        $sql .= " ORDER BY id_kategori asc, date_purchase asc";
+        $sqlTot = $sql;
+        
+        $sql .= " ORDER BY id_kategori asc, nama_jenis asc, date_purchase asc";
         $sql .= " LIMIT " . $start . " , " . $rp . " ";
         
-        $qtot = mysqli_query($this->conn, $sqlTot) or die("Error to fecth total data");
-        $queryRecords = mysqli_query($this->conn, $sql) or die("Error to fecth data");
+        $qtot = mysql_query($sqlTot) or die("Error to fecth total data");
+        $num_rows = mysql_num_rows($qtot);
+        $queryRecords = mysql_query($sql) or die("Error to fecth data");
 
-        while ($row = mysqli_fetch_assoc($queryRecords)) {
+        while ($row = mysql_fetch_assoc($queryRecords)) {
             $data[] = $row;
         }
 
-        if (intval($qtot->num_rows) > 0) {
+        if ($num_rows > 0) {
             $json_data = [
                 "page" => $page,
-                "total" => intval($qtot->num_rows),
+                "total" => $num_rows,
                 "rows" => $data
             ];
         } else {
@@ -80,22 +78,22 @@ class Jenis {
     function insertJenis($params) {
         $data = array();
         $sql = "INSERT INTO master_jenis ";
-        $sql .= "(id_kategori, kode_jenis, nama_jenis) ";
+        $sql .= "(id_kategori, kode_jenis, nama_jenis, date_purchase, qty) ";
         $sql .= "VALUES('" . $params['kategori'] . "', '" . $params['kode_jenis'] . "', "
-                . "'" . $params['nama_jenis'] . "')";
+                . "'" . $params['nama_jenis'] . "', '".$params['date_purchase']."', '".$params['qty']."')";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to insert data");
+        echo $result = mysql_query($sql) or die("error to insert data");
     }
 
     function updateJenis($params) {
         $data = array();
         $sql = "UPDATE master_jenis";
-        $sql .= " SET id_kategori='" . $params['kategori'] . "', kode_jenis = '" . $params['kode_jenis'] . "', "
+        $sql .= " SET id_kategori = '" . $params['kategori'] . "', kode_jenis = '" . $params['kode_jenis'] . "', "
                 . "nama_jenis = '" . $params['nama_jenis'] . "', date_purchase = '" . $params['date_purchase'] . "', "
                 . "qty = '" . $params['qty'] . "' ";
         $sql .= " WHERE id = '" . $_POST['edit_id'] . "'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to update data");
+        echo $result = mysql_query($sql) or die("error to update data");
     }
 
     function deleteJenis($params) {
@@ -103,7 +101,7 @@ class Jenis {
         $sql = "DELETE from master_jenis";
         $sql .= " WHERE id = '" . $params['id'] . "'";
 
-        echo $result = mysqli_query($this->conn, $sql) or die("error to delete data");
+        echo $result = mysql_query($sql) or die("error to delete data");
     }
 
 }

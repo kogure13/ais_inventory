@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    $('#tbl_dispose').flexigrid({
+    $('#tbl_recover').flexigrid({
         url: '',
         sortname: '',
         sortorder: 'asc',
         usepager: true,
         useRp: true,
         rp: 10,
-        title: 'Asset Recover List',
+        title: 'List Asset Recover',
         singleSelect: true,
         showTableToggleBtn: true,
         striped: true,

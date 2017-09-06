@@ -43,9 +43,12 @@ function ajaxAction(action) {
         success: function (html) {
             if (html == 'true') {
                 window.location = "index.php";
-            } else {
+            } else if(html == 'false') {
                 $('#err-login').css('display', 'inline', 'important');
                 $('#err-login').html('Wrong Username/Password');
+            } else if(html == 'denied'){
+                $('#err-login').css('display', 'inline', 'important');
+                $('#err-login').html('Access Denied');
             }
         },
         beforeSend: function () {

@@ -13,11 +13,11 @@ $(document).ready(function(){
                name: 'id',
                width: 40
            }, {
-               display: 'Kode Dept',
+               display: 'Code',
                name: "kode_department",
                width: 100
            }, {
-               display: 'Nama Dept',
+               display: 'Department',
                name: "nama_department",
                width: 100
            }
@@ -87,14 +87,14 @@ $(function () {
 
 function gridAction(com, grid) {
     if (com == 'Add') {
-        $('#add_model').modal('show');
+        $('#add_model').modal({backdrop:'static', keyboard:false});
         $('#action').val('add');
         $('.modal-title').html('Add Department');
     } else if (com == 'Edit') {
         if ($('.trSelected', grid).length > 0) {
             var id = 0;
 
-            $('#add_model').modal('show');
+            $('#add_model').modal({backdrop:'static', keyboard:false});
             $('#action').val('edit');
             $('.modal-title').html('Edit Department');
             $.each($('.trSelected', grid), function (key, value) {

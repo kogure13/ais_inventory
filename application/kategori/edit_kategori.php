@@ -3,8 +3,7 @@
 include_once '../../inc/class.php';
 $db = new dbObj();
 $connString = $db->getConn();
-$deptClass = new Dept();
-
+$kategoriClass = new Kategori();
 
 if(!isset($_GET['id'])){
     exit();
@@ -12,15 +11,16 @@ if(!isset($_GET['id'])){
     $params = $_GET['id'];
 }
 if ($params > 0) {
-    $deptClass->getDept($params);
+    $kategoriClass->getKategori($params);
 } else {
     mysql_errno();
 }
 
-class Dept {    
-    function getDept($params) {
+class Kategori {
+
+    function getKategori($params) {
         $json_data = array();
-        $sql = "SELECT * FROM master_department";
+        $sql = "SELECT * FROM master_kategori";
         $sql .= " WHERE id = $params";
 
         $result = mysql_query($sql) or die();

@@ -1,13 +1,13 @@
-<div class="container-fluid">
+<div class="well" style="height: 100%;">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Form Asset Check In</strong>
                     <span class="text-right pull-right text-muted" id="report-date"></span>
                 </div>
                 <form id="frm_checkin" enctype="multipart/form-data">
-                    <div class="panel-body" style="overflow: scroll; height: 450px;">                    
+                    <div class="panel-body" style="overflow: scroll; min-height: 500px;">                    
                         <div class="form-group">
                             <label class="control-label" for="no_checkin">No. Check In Asset:</label>
                             <input type="text" id="no_checkin" class="form-control input-sm" name="no_checkin" readonly="readonly">
@@ -16,7 +16,7 @@
                             <tbody>
                                 <tr>
                                     <td width="70%" style="padding-right: 5px">                                    
-                                        <label class="control-label" for="jenis_asset">Jenis Asset:</label>
+                                        <label class="control-label" for="jenis_asset">Asset Items:</label>
                                         <input type="hidden" id="id_jenis" name="id_jenis">
                                         <input type="text" id="jenis_asset" name="jenis_asset" class="form-control input-sm">                                    
                                     </td>
@@ -34,13 +34,13 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="descp">Description:</label>
-                            <textarea class="form-control input-sm" id="descp" name="descp"></textarea>
+                            <textarea class="form-control input-sm" id="descp" name="descp" style="resize: none"></textarea>
                         </div>
                         <table class="table-condensed table-responsive form-group">
                             <tr>
                                 <td style="padding-right: 5px">
                                     <label class="control-label" for="checin_by">Check In By:</label>
-                                    <input type="text" id="user_check" name="user_check" class="form-control input-sm" readonly="readonly">
+                                    <input type="text" id="user_check" name="user_check" class="form-control input-sm" readonly="readonly" value="<?= $_SESSION['nama_user'] ?>">
                                 </td>
                                 <td>
                                     <label class="control-label" for="checin_by">Date Check In:</label>
@@ -50,10 +50,9 @@
                         </table>
                         <div class="form-group">
                             <label for="sample_foto" class="control-label">Sample Foto:</label>
-                            <div class="hiddenFileInputContainter text-center">
-                                <!-- The file input field used as target for the file upload widget -->
-                                <input id="fileupload" class="hidden_pic" type="file" name="files" accept="image/*; capture=camera" onchange="loadImage(this)">
-                                <img id="imgupload" class="imgupload" src="theme/asset/images/empty_pic.png" alt="">                        
+                            <div class="wrapperImage">
+                                <input id="fileUpload" multiple="multiple" type="file"><br/>
+                                <div id="image-holder"></div>
                             </div>                            
                         </div>                    
                     </div>
@@ -65,8 +64,10 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-8 hidden-sm hidden-xs">
-            <table id="queue_checkin" style="display: none"></table>
+        <div class="col-sm-9 hidden-sm hidden-xs">
+            <div class="well">
+                <table id="queue_checkin" style="display: none"></table>
+            </div>            
         </div>
     </div>    
 </div>

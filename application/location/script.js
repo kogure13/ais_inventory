@@ -14,7 +14,7 @@ $(document).ready(function () {
                 align: 'right',
                 width: 30
             }, {
-                display: 'Kode',
+                display: 'Code',
                 name: 'kode_location',
                 width: 80
             }, {
@@ -37,6 +37,9 @@ $(document).ready(function () {
                 bclass: 'delete',
                 onpress: gridAction
             }
+        ],
+        searchitems: [
+            {display: 'Kode Ruangan', name: 'kode_location'}
         ],
         sortname: 'id',
         sortorder: 'asc',
@@ -89,12 +92,12 @@ $(function () {
 
 function gridAction(com, grid) {
     if (com == 'Add') {
-        $('#add_model').modal('show');
+        $('#add_model').modal({backdrop: 'static', keyboard: false});
         $('#action').val('add');
         $('.modal-title').html('Add Data Room Name');
     } else if (com == 'Edit') {
         if ($('.trSelected', grid).length > 0) {
-            $('#add_model').modal('show');
+            $('#add_model').modal({backdrop: 'static', keyboard: false});
             $('#action').val('edit');
             $('.modal-title').html('Edit Data Room Name');
             $.each($('.trSelected', grid), function (key, value) {

@@ -13,12 +13,25 @@ $(document).ready(function () {
                 name: 'no_check_in',
                 width: 120
             }, {
+                display: 'Items',
+                name: 'items',
+                width: 150
+            }, {
                 display: 'Location',
                 name: 'location',
+                width: 120
+            },  {
+                display: 'Description',
+                name: 'descp',
+                width: 150
+            }, {
+                display: 'User Check In',
+                name: 'user_check_in',                
                 width: 120
             }, {
                 display: 'Date Check In',
                 name: 'date_check_in',
+                align: 'center',
                 width: 120
             }
         ],
@@ -57,6 +70,17 @@ $(document).ready(function () {
             event.preventDefault();
             $('#id_location').val(ui.item.id);
             $('#location').val(ui.item.label);
+        }
+    });
+    
+    var kode = '';
+    $.ajax({
+        type: 'POST',
+        dtaType: 'JOSN',
+        url: 'application/check_in/kdauto.php?',
+        success: function(data) {
+            $('#no_checkin').val(data);
+console.log(data)
         }
     });
 });
